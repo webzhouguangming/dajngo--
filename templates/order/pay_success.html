@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h1>支付成功</h1>
+                </div>
+                <div class="card-body">
+                    <p>感谢您的支付，您的支付已经成功完成。</p>
+                    <p>您将收到一封电子邮件，确认您的订单及付款细节。我们会把货物尽快发送给您。</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'home:home' %}" class="btn btn-primary">返回首页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% extends 'base.html' %}
+    <title>{% block title %}首页{% endblock %}</title>
+    {% load static %}
+    {% block link %}<link rel="stylesheet" type="text/css" href="{% static 'basic_css/index.css' %}">{% endblock link %}
+
+</head>
+<body>
+<!-- 引入导航栏 -->
+
+<!-- 预留具体页面的位置 -->
+{% block content %}
+
+
+<section class="hero-banner">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
+        <h1>欢迎来到我的餐厅</h1>
+        <p class="mt-4">我们的餐厅是一家拥有浓厚东方文化气息的中餐厅。位于市区中心的繁华商业圈，拥有便利的交通和完备的周边设施，
+            在这里，您可以感受到中国饮食文化的浓郁魅力。</p>
+        <p class="mt-4">在我们的菜品中，您能品尝到来自各大地域的传统美食，包括粤菜、川菜、湘菜等，同时也推出了许多特色创新菜品，
+            满足不同客户的口味需求。</p>
+          <p class="mt-4">我们重视食材的新鲜度和优质性，所有的菜品都是由我们专业厨师用最纯正的方法经过精细处理，为您呈现出来。
+              从花样繁多的小吃到各式海鲜、肉类、素食等餐点，让您享受一个丰富多彩的菜单盛宴。</p>
+          <p class="mt-4">除了食品的高品质之外，我们的服务也非常贴心周到。我们的员工均受过专业的培训与考核，以专业、礼貌、周到的态度迎接每一位客人。
+              倾听每位客人的需要及意见，将他们的要求转化为我们的服务标准。
+
+我们的餐厅氛围温馨舒适，装饰典雅，整体设计风格符合东方文化内蕴。提供完善的优质服务、传统美妙中国菜系和华丽的宴会服务，让您度过一次最美好的用餐体验。</p>
+        <a href="{% url 'menus:list' %}" class="btn btn-lg btn-primary mt-5">查看菜单</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+
+<!-- 引入注脚 -->
+
+
+</body>
+</html>

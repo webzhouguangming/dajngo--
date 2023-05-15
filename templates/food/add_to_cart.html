@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+{% block content %}
+    <h2>已添加到购物车</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>{{ menu_item.name }}</strong></p>
+            <p>数量: {{ form.cleaned_data.quantity }}</p>
+            <p>餐桌号: {{ form.cleaned_data.table_number }}</p>
+        </div>
+        <div class="col-md-6">
+            <p>总价: ${{ menu_item.price * form.cleaned_data.quantity }}</p>
+            <a href="{% url 'foods:cart' %}" class="btn btn-primary">查看购物车</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% extends 'base.html' %}
+    {% load static %}
+
+
+</head>
+<body>
+{% block content %}
+    <div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+    Right-aligned but left aligned when large screen
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+    <li><button class="dropdown-item" type="button">Action</button></li>
+    <li><button class="dropdown-item" type="button">Another action</button></li>
+    <li><button class="dropdown-item" type="button">Something else here</button></li>
+  </ul>
+</div>
+{% endblock content %}
+
+
+<form action="{% url 'delete_from_cart' item.id %}" method="post">
+            {# {% csrf_token %}
+            {#
+            <button type="submit">Delete</button>
+            </form>
+{% for item in cart_items %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.dish.name }}</h5>
+            <p class="card-text">数量：{{ item.quantity }}</p>
+            <p class="card-text">总价：{{ item.total_price }}</p>
+            <p class="card-text">取餐时间：{{ item.pickup_time }}</p>
+            <p class="card-text">餐桌号：{{ item.table_number }}</p>
+        </div>
+
+
+
+    </div>
+{% endfor %}
+    <p>Total Price: {{ total_price }}</p>
+</body>
+</html>

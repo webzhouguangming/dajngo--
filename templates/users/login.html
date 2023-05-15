@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    {% extends "base.html" %}
+</head>
+<body>
+
+{% block content %}
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-4">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <p>{{ field }}:{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <h2>登录</h2>
+            <hr>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+
+            <hr>
+            <p>没有账号？<a href="{% url 'users:signup' %}">注册</a></p>
+            <p><a href="#">忘记密码</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+
+</body>
+</html>
