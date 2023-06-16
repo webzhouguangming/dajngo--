@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        {% load static %}
+        <script type="text/javascript" src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+</head>
+<body>
+    <button id="test-button">测试按钮</button>
+    <div id="test1"></div>
+
+
+
+    <script>
+  $('#test-button').click(function() {
+
+    $.ajax({
+      url: '/test/',
+      type: 'POST',
+      dataType: 'json',
+      data: {'phone_number': 123, 'code': '验证码'},
+      success: function(response) {
+          console.log(response)
+        $('#test1').text(response.message);
+      },
+      error: function(response) {
+          console.log(response)
+        $('#test1').text(response.message);
+
+      }
+    });
+  });
+</script>
+</body>
+</html>
