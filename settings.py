@@ -56,12 +56,16 @@ INSTALLED_APPS = [
     'ckeditor',
     # 注册富文本编辑器上传功能
     'ckeditor_uploader',
-    # 菜单功能
-    'menus',
-    # 购物车功能
-    'carts',
-    # 订单功能
-    'orders'
+    # 文章模块
+    'article',
+    # 留言功能
+    'message',
+    # markdown
+    'markdown',
+    # haystack
+    'haystack',
+    # 支付模块
+    'payment'
 
 
 
@@ -113,7 +117,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-
             ],
         },
     },
@@ -163,7 +166,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = []
-STATICFILES_DIRS = (r'F:\djangoProject\Resource\static',)
+# STATICFILES_DIRS = (r'F:\djangoProject\Resource\static',)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "Resource/static")
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -171,7 +177,8 @@ STATICFILES_DIRS = (r'F:\djangoProject\Resource\static',)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 有模型需要继承AbstractUser类需要修改这个配置，配置成自己的模型
-# AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser'
+
 
 if __name__ == '__main__':
     print(BASE_DIR)

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% extends 'base.html' %}
+    {% load static %}
+     {% block link %}
+            <style>
+    /* 自定义样式 */
+    .subscribe-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .subscribe-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .subscribed {
+      background-color: #5cb85c;
+      cursor: default;
+    }
+  </style>
+    {% endblock link %}
+
+  <!-- 导入 Bootstrap 5 的 CSS 文件 -->
+
+
+
+
+  <title>发布订阅按钮</title>
+</head>
+<body>
+{% block content %}
+
+    <div class="container mt-4">
+    <button id="subscribeBtn" class="btn subscribe-btn">订阅</button>
+  </div>
+
+  <!-- 导入 Bootstrap 5 的 JavaScript 文件（如果需要的话） -->
+
+
+  <script>
+    var subscribeBtn = document.getElementById('subscribeBtn');
+    var isSubscribed = false;
+
+    subscribeBtn.addEventListener('click', function() {
+      if (isSubscribed) {
+        // 取消订阅
+        subscribeBtn.classList.remove('subscribed');
+        subscribeBtn.innerHTML = '订阅';
+      } else {
+        // 订阅
+        subscribeBtn.classList.add('subscribed');
+        subscribeBtn.innerHTML = '已订阅';
+      }
+      isSubscribed = !isSubscribed;
+    });
+  </script>
+{% endblock content %}
+
+</body>
+</html>

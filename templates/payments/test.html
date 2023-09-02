@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'base.html' %}
+    {% load static %}
+    <title>Donation</title>
+ {% block link %}
+         <style>
+        .modal-dialog {
+            max-width: 400px;
+        }
+        .modal-body {
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+        }
+        .payment-method {
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+    {% endblock link %}
+
+</head>
+<body>
+{% block content %}
+    <!-- The Button to show the modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#donateModal">
+  打赏
+</button>
+
+<div class="container">
+<!-- Modal structure -->
+    <div class="modal" tabindex="-1" id="donateModal">
+            <div class="modal-dialog">
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="author">abc</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" id="amount">
+                            123
+                        </div>
+                        <div class="payment-method">
+                            <label for="payment">支付方式：</label>
+                            <select class="form-select" id="payment">
+                                <option selected>选择...</option>
+                                <option value="AliPay">支付宝</option>
+                                <option value="WeChat">微信</option>
+                            </select>
+                                <hr>
+                                <button class="btn btn-primary" id="donateBtn">提交订单</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+
+<script>
+$('#donateModal').on('show.bs.modal', function (event) {
+  $.ajax({
+    url: "/donate_info",
+    type: "GET",
+    success: function(data){
+      $('#author').text(data.author);
+      var amountDiv = document.getElementById("amount");
+      var amounts = data.amounts;
+
+      // assuming your backend would send a list of amounts
+      for(var i = 0 ; i < amounts.length ; i++ ){
+        var item = document.createElement('div');
+        item.innerHTML = amounts[i];
+        item.className = `btn btn-secondary`;
+        amountDiv.appendChild(item);
+      }
+    }
+  });
+});
+
+$("#donateBtn").click(function(){
+    var amount = $(".active").text();
+    var payment = $("#payment").val();
+
+    $.ajax({
+        url: '/donate',
+        type: 'POST',
+        data: {
+            'author': $('#author').text(),
+            'amount': amount,
+            'payment': payment,
+        },
+        success: function(data){
+            alert("已提交打赏");
+            $('#donateModal').modal('hide');
+        },
+        error: function(e){
+            alert("打赏失败，请重试");
+        }
+    });
+});
+</script>
+{% endblock content %}
+
+</body>
+</html>

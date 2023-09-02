@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+        <style>
+
+
+        </style>
+    {% endblock link %}
+
+    <title>{% block title %}留言{% endblock %}</title>
+</head>
+<body>
+
+
+{% block content %}
+
+    <div class="card text-center">
+  <div class="card-header">
+    用户留言
+  </div>
+  <div class="card-body" >
+    <h5 class="card-title"></h5>
+    <p class="card-text" >
+        {% if messages %}
+        <ul class="list-group mt-4">
+            {% for message in messages %}
+
+                   <p>
+  <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample{{ message.id }}" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">查看{{message.user.username  }}的留言</a>
+</p>
+                <div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample{{ message.id }}">
+      <div class="card card-body">
+            {{ message.content }}
+      </div>
+    </div>
+  </div>
+
+</div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="mt-4">No messages available.</p>
+    {% endif %}
+      </p>
+
+  </div>
+  <div class="card-footer text-muted">
+    点击按钮即可查看该用户的留言
+  </div>
+</div>
+
+
+
+
+{% endblock %}
+
+</body>
+</html>

@@ -156,9 +156,7 @@ class ForgetPassword(forms.Form):
         if not pattern.match(phone_number):
             print('手机号格式不对')
             raise forms.ValidationError('手机号格式错误，请输入11位手机号')
-        if CustomUser.objects.filter(phone_number=phone_number).exists():
-            print('手机号已经被占用')
-            raise forms.ValidationError('该手机号已被占用')
+
         return phone_number
 
 # 重置密码

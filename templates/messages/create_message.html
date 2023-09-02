@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% extends 'base.html' %}
+{% load static %}
+    <title>Title</title>
+
+    {% block link %}
+
+        <style>
+        body {
+            background-image: url("{% static 'image/header-bg.jpg' %}");
+            background-repeat: no-repeat;
+        }
+        .comment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+        .comment-box {
+  position: relative;
+  display: inline-block;
+}
+
+.comment-input {
+  width: 600px;
+  height: 250px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+.comment-input:focus {
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.comment-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.comment-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+        </style>
+
+    {% endblock link %}
+<title>{% block title %}留言{% endblock %}</title>
+</head>
+<body>
+
+
+{% block content %}
+<div class="comment-container">
+    <form method="POST" action="{% url 'messages:create_message' %}" class="mt-4">
+        {% csrf_token %}
+        <div class="comment-box" >
+            {{ form.content.label_tag }}
+            {{ form.content }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+
+{% endblock %}
+</body>
+</html>

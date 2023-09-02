@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+        <h1 class="mb-4">用户中心</h1>
+
+        <div class="card mb-4">
+            <div class="card-body ">
+                <h5 class="card-title">用户信息</h5>
+                <p class="card-text"><strong>用户名：</strong>{{ user.username }}</p>
+                <p class="card-text"><strong>邮箱：</strong>{{ user.email }}</p>
+                <p class="card-text"><strong>手机号：</strong>{{ user.phone_number }}</p>
+                <p class="card-text"><strong>角色：</strong>{{ user.get_roles_display }}</p>
+                <!-- 根据需要显示其他用户信息字段 -->
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">我发布的文章</h5>
+
+
+            <table class="table  table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">文章id</th>
+      <th scope="col">文章标题</th>
+      <th scope="col">文章创建时间</th>
+      <th scope="col">文章修改时间</th>
+      <th scope="col">文章类别</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if articles %}
+                    <ul class="list-group">
+                        {% for article in articles %}
+
+                            <tr>
+      <th scope="row">{{ article.id }}</th>
+      <td>{{ article.title }}</td>
+      <td>{{ article.create_time }}</td>
+      <td>{{ article.modify_time }}</td>
+        <td>{{ article.category}}</td>
+    </tr>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>您还没有发布任何文章。</p>
+                {% endif %}
+
+
+
+  </tbody>
+</table>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">我的留言</h5>
+                {% if messages %}
+                    <ul class="list-group">
+                        {% for message in messages %}
+                            <li class="list-group-item">{{ message.content }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>您还没有留言。</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% extends 'base.html' %}
+</head>
+<body>
+{% block content %}
+    <div class="row justify-content-md-center" style="transform: none;">
+
+  <div class="col-sm-12 col-md-8 col-lg-8" style="max-width:960px;">
+
+    <div class="card spur-card">
+      <div class="card-header ">
+        <div class="spur-card-icon">
+          <i class="fas fa-file-signature"></i>
+        </div>
+        <div class="spur-card-title"> 2021 岁末总结 </div>
+      </div>
+      <div class="card-body post">
+   {{ html|safe }}     </div>
+      <div class="card-footer clearfix">
+        <span class="cats mr-2"><i class="fas fa-folder"></i> <a href="https://xsinger.me/category/life/">生活</a></span>
+
+        <span data-toggle="modal" data-target="#zhuanzai" class="mr-2" role="button"><i class="fas fa-info-circle"></i> 转载</span>
+        <div class="modal fade" id="zhuanzai" tabindex="-1" aria-labelledby="zhuanzai" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h6 class="modal-title" id="zhuanzai">转载说明</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank">知识共享署名 - 相同方式共享 4.0 国际许可协议</a> 进行许可，非商业目的的转载、引用请注明本站出处。</li>
+                    <li class="list-group-item">本文地址：https://xsinger.me/life/1620.html</li>
+                    <li class="list-group-item">著作权归作者 <em>山小炮</em> 所有</li>
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span data-toggle="modal" data-target="#erweima" role="button"><i class="fas fa-qrcode"></i> 二维码</span>
+        <div class="modal fade" id="erweima" tabindex="-1" aria-labelledby="erweima" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h6 class="modal-title" id="erweima">本文二维码</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                <div id="qrcode"><img src="data:image/png;base64,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"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="post-tags float-right"><i class="fas fa-tag"></i> <a href="https://xsinger.me/tag/%E7%94%9F%E6%B4%BB/" class="badge badge-secondary">生活</a> <a href="https://xsinger.me/tag/%E7%BD%91%E7%AB%99/" class="badge badge-secondary">网站</a> <a href="https://xsinger.me/tag/%E5%B7%A5%E4%BD%9C/" class="badge badge-secondary">工作</a> <a href="https://xsinger.me/tag/diy/" class="badge badge-secondary">diy</a> <a href="https://xsinger.me/tag/%E6%80%BB%E7%BB%93/" class="badge badge-secondary">总结</a></span>      </div>
+    </div>
+
+    <div class="pager clearfix">
+      <a href="https://xsinger.me/diy/1629.html" class="btn btn-primary float-right" data-toggle="tooltip" data-placement="left" title="" data-original-title="固态硬盘坏了，安装Win10 LSTC 2021">下一篇</a>      <a href="https://xsinger.me/diy/1610.html" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="" data-original-title="聊下Unraid上搭建过的漫画服务器">上一篇</a>    </div>
+
+
+
+<div class="card spur-card" id="comments">
+
+
+  <div class="card-header ">
+    <div class="spur-card-icon">
+      <i class="fas fa-comments"></i>
+    </div>
+    <div class="spur-card-title"> 25 条评论 </div>
+  </div>
+
+  <div class="card-body">
+
+    <ol class="comment-list">
+<li id="li-comment-3198" class="comment-body comment-parent comment-odd">
+
+  <div id="comment-3198">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/eacbb84f0052902f36c59873b4ff7975?s=80&amp;r=G&amp;d=identicon" alt="JiaYin" width="80" height="80">
+    <div class="comment-main">
+
+      <p>挺充实的一年～</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me/go/aHR0cHM6Ly9pbWppYXlpbi5jb20=" rel="external nofollow">JiaYin</a>        <span class=""></span>
+        <span class="ml-1">2022-01-27 13:58:43</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 97.0.4692.99" alt="Google Chrome 97.0.4692.99" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3198#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3198', 3198);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+  </li>
+
+<li id="li-comment-3199" class="comment-body comment-parent comment-even">
+
+  <div id="comment-3199">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/4ba509f9ec541ab4d316299727b3e3ab?s=80&amp;r=G&amp;d=identicon" alt="秦大叔" width="80" height="80">
+    <div class="comment-main">
+
+      <p>二胎确实一言难尽</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me/go/aHR0cHM6Ly9xZnN5ai5jb20=" rel="external nofollow">秦大叔</a>        <span class=""></span>
+        <span class="ml-1">2022-01-29 09:39:03</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 97.0.4692.99" alt="Google Chrome 97.0.4692.99" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3199#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3199', 3199);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+  </li>
+
+<li id="li-comment-3202" class="comment-body comment-parent comment-odd">
+
+  <div id="comment-3202">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/cdd5fad266a37802d08ae8a6993f96a7?s=80&amp;r=G&amp;d=identicon" alt="I'm 代代付" width="80" height="80">
+    <div class="comment-main">
+
+      <p>新的一年，积极向上。祝新年快乐！</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me/go/aHR0cHM6Ly93d3cuZGRmLmlt" rel="external nofollow">I'm 代代付</a>        <span class=""></span>
+        <span class="ml-1">2022-02-03 11:08:05</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Android.svg" title="Android 10" alt="Android 10" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Android-Webkit.svg" title="WebView 4.0" alt="WebView 4.0" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3202#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3202', 3202);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+    <div class="comment-children">
+    <ol class="comment-list">
+<li id="li-comment-3207" class="comment-body comment-child comment-level-odd comment-odd comment-by-author">
+
+  <div id="comment-3207">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/f0e33f4d097fe2e9fd74b9b129e7a655?s=80&amp;r=G&amp;d=identicon" alt="山小炮" width="80" height="80">
+    <div class="comment-main">
+      <span class="comment-at"><a class="badge badge-pill badge-secondary" href="https://xsinger.me/life/1620.html/comment-page-2#comment-3202" data-toggle="tooltip" data-placement="top" title="" data-original-title="新的一年，积极向上。祝新年快乐！">@I'm 代代付</a></span>
+      <p>新年快乐😊</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me" rel="external nofollow">山小炮</a>        <span class=" comment-by-author"></span>
+        <span class="ml-1">2022-02-04 10:08:13</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 72.0.3626.121" alt="Google Chrome 72.0.3626.121" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3207#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3207', 3207);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+  </li>
+</ol>  </div>
+  </li>
+
+<li id="li-comment-3224" class="comment-body comment-parent comment-even">
+
+  <div id="comment-3224">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/0a5737fa7d7cf6abde7754cf7ef187aa?s=80&amp;r=G&amp;d=identicon" alt="老头" width="80" height="80">
+    <div class="comment-main">
+
+      <p>N1 真的很不错，多一个网口就更爽了～</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me/go/aHR0cHM6Ly8weG8ubmV0L28veA==" rel="external nofollow">老头</a>        <span class=""></span>
+        <span class="ml-1">2022-02-08 21:40:57</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 97.0.4692.99" alt="Google Chrome 97.0.4692.99" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3224#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3224', 3224);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+    <div class="comment-children">
+    <ol class="comment-list">
+<li id="li-comment-3225" class="comment-body comment-child comment-level-odd comment-odd comment-by-author">
+
+  <div id="comment-3225">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/f0e33f4d097fe2e9fd74b9b129e7a655?s=80&amp;r=G&amp;d=identicon" alt="山小炮" width="80" height="80">
+    <div class="comment-main">
+      <span class="comment-at"><a class="badge badge-pill badge-secondary" href="https://xsinger.me/life/1620.html/comment-page-2#comment-3224" data-toggle="tooltip" data-placement="top" title="" data-original-title="N1 真的很不错，多一个网口就更爽了~">@老头</a></span>
+      <p>如果是双网口就逆天了，N1 更要命的是 USB 是 2.0 的，如果是 3.0 还可以通过 USB 转个网口。</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me" rel="external nofollow">山小炮</a>        <span class=" comment-by-author"></span>
+        <span class="ml-1">2022-02-09 00:34:37</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 86.0.4240.198" alt="Google Chrome 86.0.4240.198" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3225#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3225', 3225);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+  </li>
+</ol>  </div>
+  </li>
+
+<li id="li-comment-3232" class="comment-body comment-parent comment-odd">
+
+  <div id="comment-3232">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/e8cb62a0b14d79296516945435c3a5c9?s=80&amp;r=G&amp;d=identicon" alt="大致" width="80" height="80">
+    <div class="comment-main">
+
+      <p>不买立省 100%</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me/go/aHR0cHM6Ly9wZXdhZS5jb20=" rel="external nofollow">大致</a>        <span class=""></span>
+        <span class="ml-1">2022-02-27 21:49:37</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Firefox.svg" title="Firefox 97.0" alt="Firefox 97.0" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3232#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3232', 3232);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+    <div class="comment-children">
+    <ol class="comment-list">
+<li id="li-comment-3233" class="comment-body comment-child comment-level-odd comment-odd comment-by-author">
+
+  <div id="comment-3233">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/f0e33f4d097fe2e9fd74b9b129e7a655?s=80&amp;r=G&amp;d=identicon" alt="山小炮" width="80" height="80">
+    <div class="comment-main">
+      <span class="comment-at"><a class="badge badge-pill badge-secondary" href="https://xsinger.me/life/1620.html/comment-page-2#comment-3232" data-toggle="tooltip" data-placement="top" title="" data-original-title="不买立省100%">@大致</a></span>
+      <p>没错，这是真理😁</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me" rel="external nofollow">山小炮</a>        <span class=" comment-by-author"></span>
+        <span class="ml-1">2022-02-28 12:15:20</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 98.0.4758.102" alt="Google Chrome 98.0.4758.102" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3233#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3233', 3233);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+  </li>
+</ol>  </div>
+  </li>
+
+<li id="li-comment-3347" class="comment-body comment-parent comment-even">
+
+  <div id="comment-3347">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/96ee2b46b262d940d5f6dd6c728526b4?s=80&amp;r=G&amp;d=identicon" alt="尾饭" width="80" height="80">
+    <div class="comment-main">
+
+      <p>不容易，坚持写博客，关注</p>      <div class="comment-meta text-muted clearfix">
+        尾饭        <span class=""></span>
+        <span class="ml-1">2022-07-10 20:17:31</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 88.0.4324.151" alt="Google Chrome 88.0.4324.151" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3347#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3347', 3347);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+    <div class="comment-children">
+    <ol class="comment-list">
+<li id="li-comment-3348" class="comment-body comment-child comment-level-odd comment-odd comment-by-author">
+
+  <div id="comment-3348">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/f0e33f4d097fe2e9fd74b9b129e7a655?s=80&amp;r=G&amp;d=identicon" alt="山小炮" width="80" height="80">
+    <div class="comment-main">
+      <span class="comment-at"><a class="badge badge-pill badge-secondary" href="https://xsinger.me/life/1620.html/comment-page-2#comment-3347" data-toggle="tooltip" data-placement="top" title="" data-original-title="不容易,坚持写博客,关注">@尾饭</a></span>
+      <p>多谢关注🙂</p>      <div class="comment-meta text-muted clearfix">
+        <a href="https://xsinger.me" rel="external nofollow">山小炮</a>        <span class=" comment-by-author"></span>
+        <span class="ml-1">2022-07-10 22:57:04</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Chrome.svg" title="Google Chrome 103.0.0.0" alt="Google Chrome 103.0.0.0" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3348#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3348', 3348);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+  </li>
+</ol>  </div>
+  </li>
+
+<li id="li-comment-3374" class="comment-body comment-parent comment-odd">
+
+  <div id="comment-3374">
+        <img class="avatar" src="https://cdn.sep.cc/avatar/3b8f497768c4db07f424166b5f422511?s=80&amp;r=G&amp;d=identicon" alt="gtrfe" width="80" height="80">
+    <div class="comment-main">
+
+      <p>充实的生活</p>      <div class="comment-meta text-muted clearfix">
+        gtrfe        <span class=""></span>
+        <span class="ml-1">2022-10-08 10:34:32</span>
+        <span class="comment-useragent">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/os/Windows-10.svg" title="Windows 10 x64 Edition" alt="Windows 10 x64 Edition" height="15" style="vertical-align:-2px;">&nbsp;&nbsp;<img nogallery="" class="icon-ua" src="https://xsinger.me/usr/plugins/UserAgent/img/browser/Firefox.svg" title="Firefox 105.0" alt="Firefox 105.0" height="15" style="vertical-align:-2px;"></span>
+                <span class="comment-reply float-right"><a href="https://xsinger.me/life/1620.html/comment-page-2?replyTo=3374#respond-post-1620" rel="nofollow" onclick="return TypechoComment.reply('comment-3374', 3374);">回复</a></span>
+      </div>
+    </div>
+  </div>
+
+  </li>
+</ol>    <nav>
+      <ul class="pagination pagination-sm justify-content-center"><li class="prev page-item"><a href="https://xsinger.me/life/1620.html/comment-page-1#comments" class="page-link">«</a></li><li class="page-item"><a href="https://xsinger.me/life/1620.html/comment-page-1#comments" class="page-link">1</a></li><li class="active page-item"><a href="https://xsinger.me/life/1620.html/comment-page-2#comments" class="page-link">2</a></li></ul>    </nav>
+
+  	  	<div id="respond-post-1620" class="respond">
+
+    <div class="cancel-comment-reply float-right">
+      <a id="cancel-comment-reply-link" href="https://xsinger.me/life/1620.html#respond-post-1620" rel="nofollow" style="display:none" onclick="return TypechoComment.cancelReply();" class="ml-auto p-2">取消回复</a>    </div>
+
+    <h5 class="response mb-3">发表评论</h5>
+
+    <form method="post" action="https://xsinger.me/life/1620.html/comment" class="form-group" role="form">
+
+
+              <div id="author_info">
+                <div class="form-row">
+            <div class="col-lg-4">
+              <input type="text" name="author" maxlength="12" id="author" class="form-control" placeholder="昵称 *" value="" required="">
+            </div>
+            <div class="col-lg-4">
+              <input type="email" name="mail" id="mail" class="form-control" placeholder="邮箱 *" value="" required="">
+            </div>
+            <div class="col-lg-4">
+              <input type="url" name="url" id="url" class="form-control" placeholder="网址" value="">
+            </div>
+          </div>
+          <small class="form-text text-muted mb-2"><code>*</code> 号为必填项</small>
+        </div>
+                <div class="form-group">
+            <small class="form-text text-muted mb-1"><i class="far fa-smile"></i> 评论支持 Emoji 表情</small>
+            <textarea name="text" id="textarea" class="form-control" rows="3" placeholder="小荷才露尖尖角，早有蜻蜓立上头。
+「小池」宋代 · 杨万里" required=""></textarea>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1" required="required">
+              <label class="custom-control-label" for="customSwitch1"><small class="text-muted">在浏览器中保存您的个人信息，以便下次发表评论时使用。</small></label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">提交评论</button>
+
+      <input type="hidden" name="_" value="484fe1833a1a8fe0193d44701e932765"></form>
+    </div>
+
+</div>
+
+  </div>
+  </div>
+
+  <div class="col-sm-12 col-md-4 col-lg-3 sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+
+
+
+
+
+  <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;"><div class="card shadow mb-4">
+      <div class="card-body">
+        <ul class="list-group list-group-flush text-muted">
+          <li class="list-group-item"><a href="https://xsinger.me/author/1/" data-toggle="tooltip" data-placement="left" title="" data-original-title="本文作者：山小炮"><img src="https://cdn.sep.cc/avatar/deeab331b5a98ff653e67387791953f4?s=35&amp;r=G&amp;d=identicon" class="rounded-circle"></a> 写于 2021 年 12 月 31 号 </li>
+                    <li class="list-group-item bg-warning text-white">本文最后修改于 <span data-toggle="tooltip" data-placement="top" title="" data-original-title="2022年1月1号">534</span> 天前，其中某些信息可能已经过时。</li>
+                    <li class="list-group-item">包含 1957 个字和 0 张图片</li>
+          <li class="list-group-item"><span id="read-time">预计阅读 8 分钟</span></li>
+          <li class="list-group-item">已阅读 8412 次</li>
+        </ul>
+      </div>
+    </div><div class="card shadow">
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link text-muted active" id="ml-tab" data-toggle="tab" href="#ml" role="tab" aria-controls="ml" aria-selected="true"><i class="fas fa-list mr-2"></i>目录</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" id="xg-tab" data-toggle="tab" href="#xg" role="tab" aria-controls="xg" aria-selected="true"><i class="fas fa-project-diagram mr-2"></i>相关</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" id="xj-tab" data-toggle="tab" href="#sj" role="tab" aria-controls="sj" aria-selected="false"><i class="fas fa-random mr-2"></i>随机</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-muted" id="rp-tab" data-toggle="tab" href="#rp" role="tab" aria-controls="rp" aria-selected="false"><i class="fas fa-comment-alt mr-2"></i>热评</a>
+        </li>
+      </ul>
+
+      <div class="tab-content shenglve" id="myTabContent">
+        <div class="tab-pane fade show active" id="ml" role="tabpanel" aria-labelledby="ml-tab">
+          <div class="card-body">
+            <ul class="list-group list-group-flush"><li class="list-group-item text-muted">本文无目录</li></ul>          </div>
+        </div>
+
+        <div class="tab-pane fade" id="xg" role="tabpanel" aria-labelledby="xg-tab">
+          <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                                          <a href="https://xsinger.me/essay/1654.html" class="list-group-item text-muted">网站十年</a>
+                            <a href="https://xsinger.me/diy/1553.html" class="list-group-item text-muted">改了几副 MMCX 接口耳机</a>
+                            <a href="https://xsinger.me/diy/1493.html" class="list-group-item text-muted">又组了几把机械键盘</a>
+                            <a href="https://xsinger.me/life/1492.html" class="list-group-item text-muted">2020 岁末总结</a>
+                            <a href="https://xsinger.me/diy/1490.html" class="list-group-item text-muted">用 108 套件组了一把日常用的键盘</a>
+                                        </ul>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="sj" role="tabpanel" aria-labelledby="sj-tab">
+          <div class="card-body">
+            <ul class="list-group list-group-flush"><a href="https://xsinger.me/tucao/170.html" class="list-group-item text-muted">我多想把自己解放了</a><a href="https://xsinger.me/share/128.html" class="list-group-item text-muted">我会想起你</a><pangu> </pangu><a href="https://xsinger.me/diy/1649.html" class="list-group-item text-muted">Resilio Sync Home 同步 BookxNote Pro 笔记数据和书籍</a><a href="https://xsinger.me/share/110.html" class="list-group-item text-muted">生命幻想曲</a><a href="https://xsinger.me/share/85.html" class="list-group-item text-muted">推荐三部电影</a></ul>          </div>
+        </div>
+
+        <div class="tab-pane fade" id="rp" role="tabpanel" aria-labelledby="rp-tab">
+          <div class="card-body">
+            <ul class="list-group list-group-flush"> <a class="list-group-item text-muted" href="https://xsinger.me/diy/1010.html" title="收到了评论 95 条">斐讯 N1 折腾记录</a><a class="list-group-item text-muted" href="https://xsinger.me/diy/1132.html" title="收到了评论 74 条">斐讯 N1 折腾记录（二）</a><a class="list-group-item text-muted" href="https://xsinger.me/diy/1412.html" title="收到了评论 72 条">运行了 100 多天的群晖都做了啥？</a><a class="list-group-item text-muted" href="https://xsinger.me/diy/1232.html" title="收到了评论 64 条">申请了公网 IP</a><pangu> </pangu><a class="list-group-item text-muted" href="https://xsinger.me/zahuo/1093.html" title="收到了评论 55 条">买了台 OnePlus 7T</a></ul>
+          </div>
+        </div>
+      </div>
+
+    </div><div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;"><div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0px; top: 0px; transition: all 0s ease 0s; width: 318px; height: 3244px;"></div></div><div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;"><div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div></div></div></div></div>
+
+</div>
+{% endblock content %}
+
+</body>
+</html>

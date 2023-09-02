@@ -15,14 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from djangoProject import settings, static
 
 # from djangoProject.app.home.views import Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    re_path(r'ckeditor/', include('ckeditor_uploader.urls')),
     re_path('^', include(('home.urls', 'home'), namespace='home')),
     re_path('^', include(('users.urls', 'users'), namespace='users')),
-    re_path('^', include(('menus.urls', 'menus'), namespace='menus')),
-    re_path('^', include(('carts.urls', 'carts'), namespace='carts')),
-    re_path('^', include(('orders.urls', 'orders'), namespace='orders')),
+    re_path('^', include(('article.urls', 'article'), namespace='articles')),
+    re_path('^', include(('message.urls', 'message'), namespace='messages')),
+    re_path(r'^search/', include('haystack.urls')),
+
+
 ]

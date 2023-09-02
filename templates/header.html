@@ -4,34 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
-   <link rel="stylesheet" type="text/css" href="{% static 'basic_css/header.css' %}">
-  <style></style>
+    {#<link rel="stylesheet" type="text/css" href="{% static 'basic_css/header.css' %}">  #}
+
+  <style>
+      .nav-item {
+          margin-left: 20px;
+      }
+  </style>
+    <script src="https://kit.fontawesome.com/285cdcab6a.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
 
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <i class="fa-solid fa-wifi"></i>
+    <i class="fa-light fa-face-awesome" style="
+font-family: Font-Awesome;
 
-  <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-      </a>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="{% url 'home:home' %}" class="nav-link px-2 link-secondary">首页</a></li>
-        <li><a href="{% url 'menus:list' %}" class="nav-link px-2 link-dark">菜单</a></li>
-        <li><a href="{% url 'orders:pay'%}" class="nav-link px-2 link-dark">订单</a></li>
-        <li><a href="{% url 'carts:cart' %}" class="nav-link px-2 link-dark">购物车</a></li>
-        <li><a href="{% url 'users:user_center' %}" class="nav-link px-2 link-dark">个人中心</a></li>
+"></i>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home:home' %}">首页</a>
+        </li>
+            <li class="nav-item">
+          <a class="nav-link" href='{% url 'articles:article_list' %}'>文章</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="https://openai.com/research/gpt-4" >ChatGPT</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'messages:messages' %}">留言</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'users:user_center' %}">用户中心</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home:about_website' %}">关于网站</a>
+        </li>
       </ul>
+      <form class="d-flex" style="margin-right: 70px" action="/search/">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+        {% if user.username %}
+                            欢迎您！ <span style="font-weight: bolder;">[ {{ user.username }} ]</span>
+                            &emsp;<a href="/logout/">退出登录</a>&nbsp;
+                            {% else %}
+                            <li>
+                                <i class="fa-regular fa-user" style="margin-right: 30px"><a href="{% url 'users:login' %}">登录</a></i>
+                               <i class="fa-regular fa-user" style="margin-right: 30px"><a href="{% url 'users:signup' %}">注册</a></i>
+                            </li>
+                        {% endif %}
 
-
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2" ><a href="{% url 'users:login' %}">Login</a></button>
-        <button type="button" class="btn btn-outline-primary me-2"><a href="{% url 'users:signup' %}">Sign up</a></button>
-      </div>
-    </header>
+    </div>
   </div>
-   <div class="b-example-divider"></div>
+</nav>
+
 </body>
 </html>

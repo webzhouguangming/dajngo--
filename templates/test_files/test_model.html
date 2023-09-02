@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% extends 'base.html' %}
+    {% load static %}
+</head>
+<body>
+        {% block content %}
+
+     <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+
+            <div class="row g-3">
+  <div class="col">
+    <input type="radio" class="btn-check" name="money" id="money-1" autocomplete="off" value="10">
+
+      <label class="btn btn-outline-success" for="money-1"><i class="fa-solid fa-seedling fa-lg">10元</i></label>
+  </div>
+  <div class="col">
+    <input type="radio" class="btn-check" name="money" id="money-2" autocomplete="off" >
+
+      <label class="btn btn-outline-success" for="money-2"><i class="fa-solid fa-seedling fa-lg">20元</i></label>
+  </div>
+  <div class="col">
+        <input type="radio" class="btn-check" name="money" id="money-3" autocomplete="off" >
+
+      <label class="btn btn-outline-success" for="money-3"><i class="fa-solid fa-seedling fa-lg">30元</i></label>
+    </div>
+  </div>
+              <div class="row g-3">
+  <div class="col">
+    <input type="radio" class="btn-check" name="money" id="money-4" autocomplete="off" >
+
+      <label class="btn btn-outline-success" for="money-4"><i class="fa-solid fa-seedling fa-lg">50元</i></label>
+  </div>
+  <div class="col">
+    <input type="radio" class="btn-check" name="money" id="money-5" autocomplete="off" >
+
+      <label class="btn btn-outline-success" for="money-5"><i class="fa-solid fa-seedling fa-lg">100元</i></label>
+  </div>
+  <div class="col">
+        <input type="radio" class="btn-check" name="money" id="money-6" autocomplete="off" >
+
+      <label class="btn btn-outline-success" for="money-6"><i class="fa-solid fa-seedling fa-lg">200元</i></label>
+    </div>
+  </div>
+
+
+            <span class="border-0"></span>
+            <span class="border-top-0"></span>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        {% endblock content %}
+</body>
+</html>

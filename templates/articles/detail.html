@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% extends 'base.html' %}
+    {% load static %}
+
+<title>{% block title %}文章详情{% endblock %}</title>
+    {% block link %}
+        <style>
+        body{
+            background-color: #2c3e50;
+        }
+    .my-card {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s;
+    }
+
+    .my-card:hover {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+    }
+</style>
+    {% endblock link %}
+
+</head>
+<body >
+{% block content %}
+
+<div class="container">
+  <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+  <div class="row">
+    <div class="col-md-9">
+        <div class="card mt-3 my-card">
+            <h2 class="card-title text-center bg-dark text-white">{{ object.title }}</h2>
+            <span class="badge rounded-pill bg-secondary">创建时间：{{ object.create_time }}</span>
+            <span class="badge rounded-pill bg-secondary">修改时间：{{ object.modify_time }}</span>
+
+
+  <div class="card-body  ">
+      <img src="{{ object.image.url }}" alt="{{object.title }}" style="height: 375px; width: 100%; display: block;">
+    <p class="card-text" >{{ markdown_content|safe }}</p>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted" style="float: right;">作者：{{ object.author }}</small>
+      <small class="text-muted">类别：{{ object.category }}</small>
+      <small class="text-muted">文章查看次数：{{ object.views }}</small>
+  </div>
+</div>
+    </div>
+
+    <div class="col-4 col-md-3">
+        <div class="card mt-3">
+  <h5 class="card-header bg-dark text-white">作者最新文章</h5>
+  <div class="card-body">
+    <ul class="list-group">
+         {% for la in latest_articles %}
+
+ <a href="{% url 'articles:article_detail' la.id %}" class="list-group-item list-group-item-action list-group-item-info">
+     {{ la.title }}</a>
+      {% endfor %}
+
+    </ul>
+
+
+</div>
+    </div>
+  </div>
+
+
+  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+  <div class="row">
+    <div class="col-9 "><div class="card mt-3" >
+  <div class="card-body">
+    {% for comment in comments %}
+        {% if comment.article.id == article.id %}
+             <div class="alert alert-success" role="alert">
+  <P>用户{{ comment.user.username }}在{{ comment.comment_time }}发起评论:</P>
+        {{ comment.content|safe }}
+</div>
+
+        {% endif %} 
+
+
+
+    {% endfor %}
+
+
+  </div>
+  <div class="card-footer">
+
+<form method="post" action="{% url 'articles:add_comment' article_id=article.id %}">
+  {% csrf_token %}
+    {{ comment_form.media }}
+  {{ comment_form.as_p }}
+  <button type="submit">提交评论</button>
+</form>
+  </div>
+</div></div>
+
+  </div>
+
+
+{% endblock content %}
+
+</body>
+</html>

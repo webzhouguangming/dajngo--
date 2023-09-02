@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+        <h1 class="mb-4">用户中心</h1>
+        <div class="card mb-4">
+            <div class="card-body ">
+                <h5 class="card-title">用户信息</h5>
+                <p class="card-text"><strong>用户名：</strong>{{ user.username }}</p>
+                <p class="card-text"><strong>邮箱：</strong>{{ user.email }}</p>
+                <p class="card-text"><strong>手机号：</strong>{{ user.phone_number }}</p>
+                <p class="card-text"><strong>角色：</strong>{{ user.get_roles_display }}</p>
+                <!-- 根据需要显示其他用户信息字段 -->
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">文章发布</h5>
+
+                    <strong>由于您只是普通用户，暂时无法发表任何文章！</strong>
+
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">我的留言</h5>
+                {% if messages %}
+                    <ul class="list-group">
+                        {% for message in messages %}
+                            <li class="list-group-item">{{ message.content }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>您还没有留言。</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+</body>
+</html>

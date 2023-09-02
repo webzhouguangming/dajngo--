@@ -1,41 +1,24 @@
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views import View
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import CustomUser
-from menus.models import Food, FoodCategory
 from .forms import CustomUserCreationForm, CustomForm, TestLogin, TestRegister, ForgetPassword, ResetPasswordForm
-from orders.models import Order
 import random
 import threading
 import django_redis
 from django_redis import client
 from djangoProject.utils.sms import send_sms_code
+from article.models import ArticleAuthor
+from message.models import Message
+
 
 def home_view(request):
     return render(request, 'index.html')
-
-
-class FoodListView(ListView):
-    model = Food
-    template_name = 'food/list.html'
-    context_object_name = 'food_list'
-    paginate_by = 8
-
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        if query:
-            return Food.objects.filter(name__icontains=query)
-        else:
-            return Food.objects.all()
-
-
-class FoodDetailView(DetailView):
-    model = Food
-    template_name = 'food/detail.html'
 
 
 def signup_view(request):
@@ -69,7 +52,7 @@ def login_view(request):
                     user.save()
                     login(request, user)
                     print(request.user)
-                    return redirect('menus:list')
+                    return redirect('home:home')
 
 
                 else:
@@ -88,40 +71,35 @@ def logout_view(request):
     return redirect('users:home')
 
 
-class UserProfileView(View):
-
-    def get(self, request):
-        user = CustomUser.objects.filter(is_active=1).first()
-        orders = Order.objects.all()
-
-        return render(request, template_name='users/user_center.html', context={'user': user, 'orders': orders})
-
-
 # 登录视图
 def login_view2(request):
     if request.method == 'POST':
-        form = TestLogin(request.POST)
+        form = CustomForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            if username:
-                user = CustomUser.objects.filter(username=username).first()
+
+            user = CustomUser.objects.filter(username=username).first()
+            if user:
                 if user.check_password(password):
                     # user = authenticate(request, username=username, password=password)
                     # if user is not None:
+                    user.is_active = 1
+                    user.save()
                     login(request, user)
-                    print('登陆成功')
+                    print('登陆成功了')
+                    print(request.user)
                     messages.success(request, '登录成功')
                     return redirect('home:home')
                 else:
                     print('登录失败')
                     messages.error(request, '用户名或密码错误')
     else:
-        form = TestLogin()
+        form = CustomForm()
 
     context = {'form': form}
 
-    return render(request, 'test_files/test_login.html', context)
+    return render(request, 'users/login.html', context)
 
 
 # 注册视图
@@ -143,7 +121,7 @@ def signup_view2(request):
     else:
         form = TestRegister()
 
-    return render(request, 'test_files/test_register.html', {'form': form})
+    return render(request, 'users/signup.html', {'form': form})
 
 # 发送验证码
 
@@ -160,7 +138,7 @@ def send_code(request):
         phone_number = form.cleaned_data['phone_number']
         smscode = random.randint(1000, 9999)  # 生成验证码
         print(smscode)
-        # 发送验证码的异步处理，防止阻塞 Web 服务器的请求处理
+        # 发送验证码的异步处理，防止响应时间过长，造成页面不反应
         thr = threading.Thread(target=send_code_async, args=(phone_number, smscode))
         thr.start()
         # 将验证码存储到redis中，60秒后过期
@@ -183,20 +161,20 @@ def send_code_async(phone_number, smscode):
     print('测试send_code_async接口')  # 打印返回结果，用于调试
 
 
-
 # 忘记密码页面
 
 
 class ForgetPasswordView(View):
     def get(self, request):
         form = ForgetPassword()
-        return render(request, 'test_files/test_forgetpassword.html', {'form': form})
+        return render(request, 'users/reset_password.html', {'form': form})
 
     def post(self, request):
         phone_number = request.POST.get('phone_number')
         code = request.POST.get('code')
         print('==========当前测试内容==============')
         print(code)
+        print(type(code))
         print(phone_number)
         print('===========测试完毕=================')
         if not phone_number or not code:
@@ -207,6 +185,10 @@ class ForgetPasswordView(View):
         # 从redis中获取验证码
         redis_conn = django_redis.get_redis_connection('verify_code')
         cached_code = redis_conn.get('sms_%s'%phone_number)
+        cached_code = cached_code.decode()
+        print(cached_code)
+        print(type(cached_code))
+
         if not cached_code:
 
             return JsonResponse({
@@ -214,11 +196,11 @@ class ForgetPasswordView(View):
                 'message': 'The verification code has expired Please obtain it again'
             })
 
-        # if code != cached_code:
-        #     return JsonResponse({
-        #         'status': 'error',
-        #         'message': 'verify error'
-        #     })
+        if code != cached_code:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'verify error'
+            })
 
         return JsonResponse({
             'status': 'success',
@@ -232,7 +214,7 @@ class ResetPassword(View):
     def get(self, request):
 
         form = ResetPasswordForm()
-        return render(request, 'test_files/test_setpassword.html', {'form': form})
+        return render(request, 'users/set_password.html', {'form': form})
 
     def post(self, request):
         form = ResetPasswordForm()
@@ -244,7 +226,8 @@ class ResetPassword(View):
         print(user)
         if user:
             if password == repassword:
-                user.password = user.set_password(password)
+                user.set_password(password)
+                user.save()
                 return JsonResponse({'success': True, 'message': '重置密码成功，即将跳转到登录页面'})
 
             else:
@@ -262,4 +245,32 @@ class ResetPassword(View):
             print(error_messages)
             return JsonResponse({'success': False, 'errors': error_messages})
 
+
+@login_required(login_url='users:login')
+def user_center_view(request):
+    user = request.user
+    if user.roles == 'admin':
+        try:
+            article_author = user.articleauthor
+            print(article_author)
+            articles = article_author.blog_article.all()
+        except ArticleAuthor.DoesNotExist:
+            articles = None
+
+        messages = Message.objects.filter(user=user)
+
+        context = {
+            'user': user,
+            'articles': articles,
+            'messages': messages
+        }
+        return render(request, 'users/user_center_admin.html', context)
+    else:
+        messages = Message.objects.filter(user=user)
+
+        context = {
+            'user': user,
+            'messages': messages
+        }
+        return render(request, 'users/user_center_user.html', context)
 

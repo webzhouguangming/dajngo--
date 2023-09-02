@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      {% load static %}
+    <!-- 引入Bootstrap CSS文件 -->
+
+      <style rel="stylesheet" href="{% static 'font/font-awesome.min.css'%}"></style>
+      <style rel="stylesheet">
+          #drawer-right {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-right: 300px;
+    background: #2B3E51;
+    width: 300px;
+    padding: 20px;
+    z-index: 999;
+
+}
+
+#drawer-right h1, #drawer-right h2{color: white;}
+
+#drawer-right .nav-pills>li>a {
+	font-size: 18px;
+	border-radius: 0;
+}
+
+#drawer-right .social{margin-top: 30px}
+#drawer-right .social ul {
+    list-style: none;
+    padding-left: 20px;
+}
+#drawer-right .social ul > li {
+    display: inline-block;
+}
+#drawer-right .social ul > li > a:hover{
+	color: white;
+}
+      </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <title>左侧菜单栏</title>
+  </head>
+  <body>
+    <div id="drawer-right">
+			<div class="cross text-right">
+				<a class="toggleDrawer" href="#"><i class="fa fa-times-circle fa-2x"></i></a>
+			</div>
+			<h2>Navigate</h2>
+			<nav>
+				<ul class=" nav flex-column ">
+					<li class="nav-item">
+						<a href="#wrapper"><i class="fa fa-home"></i> 首页</a>
+					</li>
+					<li class="nav-item">
+						<a href="#portfolio"><i class="fa fa-heart"></i> 心情</a>
+					</li>
+					<li class="nav-item">
+						<a href="#services"><i class="fa fa-file-text-o"></i> 笔记</a>
+					</li>
+					<li class="nav-item">
+						<a href="#blog"><i class=" fa fa-youtube-play"></i> 音乐</a>
+					</li>
+					<li class="nav-item">
+						<a href="#parallax"><i class=" fa fa-user"></i> 关于我</a>
+					</li>
+					<li class="nav-item">
+						<a href="#testimonials"><i class="fa  fa-flickr"></i> 留言板</a>
+					</li>
+					<li class="nav-item">
+						<a href="#testimonials"><i class="fa  fa-hand-o-right"></i>在线测试</a>
+					</li>
+
+				</ul>
+			</nav>
+			<div class="social">
+				<h2>Stay Connected</h2>
+				<ul>
+					<li><a href=""><i class="fa fa-qq fa-3x"></i></a></li>
+					<li><a href=""><i class="fa fa-weixin fa-3x"></i></a></li>
+					<li><a href=""><i class="fa fa-weibo fa-3x"></i></a></li>
+
+				</ul>
+			</div>
+		</div><!-- #drawer-right -->
+  </body>
+</html>

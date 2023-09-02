@@ -1,43 +1,60 @@
 {% load static %}
-<!-- Footer -->
-<div>
-    <br><br><br>
-</div>
-<footer class="bg-light text-center text-lg-start">
-  <div class="container p-4">
-    <div class="row">
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-        <h5 class="text-uppercase">关于我们</h5>
-        <p class="text-muted">毕业设计：在线餐馆系统</p>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase">联系我们</h5>
-        <ul class="list-unstyled mb-0">
-          <li>
-            <a href="#!" class="text-muted"><i class="bi bi-geo-alt"></i> 餐厅地址</a>
-          </li>
-          <li>
-            <a href="mailto:email@example.com" class="text-muted"><i class="bi bi-envelope-fill"></i> email@example.com</a>
-          </li>
-          <li>
-            <a href="#!" class="text-muted"><i class="bi bi-telephone-fill"></i> +86 (020) 12345678</a>
-           </li>
-        </ul>
-      </div>
-     <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-uppercase">关注我们</h5>
-        <ul class="list-unstyled mb-0">
-          <li>
-            <a href="#!" class="text-muted"><i class="bi bi-facebook"></i> Facebook</a>
-          </li>
-          <li>
-            <a href="#!" class="text-muted"><i class="bi bi-instagram"></i> Instagram</a>
-          </li>
-         </ul>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        /* 自定义样式 */
+        /* 可根据需要进行调整和修改 */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #content {
+            flex: 1;
+        }
+        #footer {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+        }
+        #footer .container {
+            text-align: center;
+        }
+        #footer .social-links a {
+            color: #555;
+            margin: 0 10px;
+            transition: color 0.3s ease-in-out;
+        }
+        #footer .social-links a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 网站内容 -->
+    <div id="content">
+        <!-- 网站主体内容 -->
     </div>
-   </div>
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2021 版权所有：<a class="text-muted fw-bold" href="#">在线餐馆</a>
-  </div>
-</footer>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="social-links">
+                <!-- 社交媒体图标，请根据您的实际需求修改链接和图标（使用 Font Awesome 图标库） -->
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+
+            </div>
+            <p>© 2023 XiaoMing Blog</p>
+        </div>
+    </footer>
+
+
+</body>
+</html>
